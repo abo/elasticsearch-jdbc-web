@@ -62,7 +62,7 @@
               <tbody>
                   <tr th:each="task : ${tasks}">
                       <td th:text="${task.name}">Mark</td>
-                      <td th:text="${task.state}">Otto</td>
+                      <td th:text="${task.stateAsString}">Otto</td>
                       <td th:text="${task.setting}">@mdo</td>
                       <td th:text="${#dates.format(task.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
                       <td></td>

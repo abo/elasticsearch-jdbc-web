@@ -48,22 +48,94 @@
 
     <div class="container">
       <div class="starter-template">
-          <form class="form-horizontal" th:action="@{/tasks}" th:object="${task}" method="post">
+          <form class="form-horizontal" th:action="@{/tasks}" method="post">
               <div class="form-group">
-                  <label for="name" class="col-sm-2 control-label">名称</label>
+                  <label for="taskname" class="col-sm-2 control-label">任务名称</label>
                   <div class="col-sm-10">
-                      <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Name">
+                      <input type="text" class="form-control" name="taskname" id="taskname" placeholder="Task Name">
+                  </div>
+              </div>
+              <hr/>
+              <div class="form-group">
+                  <label for="mysqlhost" class="col-sm-2 control-label">MySQL Host</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="mysqlhost" name="mysqlhost" placeholder="MySQL Host">
                   </div>
               </div>
               <div class="form-group">
-                  <label for="setting" class="col-sm-2 control-label">配置</label>
-                  <div class="col-sm-10">
-                      <textarea class="form-control" rows="5" th:field="*{setting}" id="setting"></textarea>
+                  <label for="mysqlport" class="col-sm-2 control-label">MySQL Port</label>
+                  <div class="col-sm-2">
+                      <input type="text" class="form-control" id="mysqlport" name="mysqlport" value="3306" placeholder="MySQL Port">
                   </div>
               </div>
+              <div class="form-group">
+                  <label for="mysqlusername" class="col-sm-2 control-label">MySQL UserName</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="mysqlusername" name="mysqlusername" placeholder="MySQL UserName">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="mysqlpassword" class="col-sm-2 control-label">MySQL Password</label>
+                  <div class="col-sm-10">
+                      <input type="password" class="form-control" id="mysqlpassword" name="mysqlpassword" placeholder="MySQL Password">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="mysqltable" class="col-sm-2 control-label">MySQL Table</label>
+                  <div class="col-sm-2">
+                      <select class="form-control" id="mysqltable" name="mysqltable">
+                          <option value="confonlineusers">confonlineusers</option>
+                          <option value="sitevodusers">sitevodusers</option>
+                          <option value="tn_confstat">tn_confstat</option>
+                          <option value="tn_userstat">tn_userstat</option>
+                          <option value="siteliveusers">siteliveusers</option>
+                          <option value="tn_confonlineusers">tn_confonlineusers</option>
+                          <option value="tn_siteliveusers">tn_siteliveusers</option>
+                          <option value="userstat">userstat</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="sqlwhere" class="col-sm-2 control-label">SQL</label>
+                  <div class="col-sm-10">
+                      <span id="sql">select * from confonlinusers where</span>
+                      <input type="text" class="form-control" id="sqlwhere" name="sqlwhere" placeholder="where">
+                  </div>
+              </div>
+              <hr/>
+              <div class="form-group">
+                  <label for="eshost" class="col-sm-2 control-label">Elasticsearch Host</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="eshost" name="eshost" placeholder="Elasticsearch Host">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="esport" class="col-sm-2 control-label">Elasticsearch Port</label>
+                  <div class="col-sm-2">
+                      <input type="text" class="form-control" id="esport" name="esport" placeholder="Elasticsearch Port" value="9300">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="escluster" class="col-sm-2 control-label">Elasticsearch Cluster</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="escluster" name="escluster" value="elasticsearch" placeholder="Elasticsearch Cluster">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="esindex" class="col-sm-2 control-label">Elasticsearch Index</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="esindex" name="esindex" placeholder="Elasticsearch Index">
+                  </div>
+              </div>
+              <!--<div class="form-group">-->
+                  <!--<label for="setting" class="col-sm-2 control-label">配置</label>-->
+                  <!--<div class="col-sm-10">-->
+                      <!--<textarea class="form-control" rows="5"  id="setting"></textarea>-->
+                  <!--</div>-->
+              <!--</div>-->
               <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default">添加</button>
+                      <button type="submit" class="btn btn-success">添加</button>
                   </div>
               </div>
           </form>
@@ -75,9 +147,16 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script th:src="@{/js/jquery/1.11.3/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
+    <script>
+        $(function(){
+            $('#mysqltable').change(function(){
+                $('#sql').text('select * from '+ $('#mysqltable').val() + ' where');
+            });
+        });
+    </script>
   </body>
 </html>

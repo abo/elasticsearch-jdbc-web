@@ -59,6 +59,20 @@ public class Task implements Serializable {
         return state;
     }
 
+    public String getStateAsString(){
+        if(getState() == Task.STATE_EXECUTING){
+            return "执行中...";
+        }else if(getState() == Task.STATE_FAILED){
+            return "已失败";
+        }else if(getState() == Task.STATE_FINISHED){
+            return "已完成";
+        }else if(getState() == Task.STATE_WAITING){
+            return "等待中";
+        }else{
+            return "";
+        }
+    }
+
     public void setState(Integer state) {
         this.state = state;
     }
