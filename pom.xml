@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.gensee</groupId>
+	<groupId>com.github</groupId>
 	<artifactId>elasticsearch-jdbc-web</artifactId>
 	<version>1.7.2.1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>elasticsearch-jdbc-web</name>
 	<description>Web console for elasticsearch-jdbc</description>
